@@ -20,6 +20,63 @@
 
 One native app for the four things you actually open a Mac utility for: clean junk, manage startup apps, watch live performance, visualize disk usage. No subscription. No telemetry. No background daemon. Open it when you need it, close it when you don't.
 
+---
+
+<br />
+
+<div align="center">
+
+## 🚀 Quickstart
+
+**macOS 13 Ventura or newer · Intel or Apple Silicon · ~80 MB**
+
+<br />
+
+### 1 — Download
+
+### [⬇ MacSense.dmg](https://github.com/veraiotech/veraio-macsense/releases/latest)
+
+<sub>Latest release · universal binary</sub>
+
+<br />
+
+### 2 — Drag into Applications
+
+<sub>Open the DMG, drag <b>MacSense.app</b> onto the <b>Applications</b> folder.</sub>
+
+<br />
+
+### 3 — Launch it
+
+<sub>Open from Launchpad or Spotlight (<kbd>⌘</kbd> <kbd>Space</kbd> → "MacSense").</sub>
+
+<br />
+
+**Signed with a Developer ID certificate and notarized by Apple.**<br />
+<sub>Gatekeeper opens it on first launch — no warning, no right-click → Open.</sub>
+
+</div>
+
+<br />
+
+<details>
+<summary><b>Verify the download (optional)</b></summary>
+
+```bash
+shasum -a 256 MacSense.dmg
+# compare against the SHA-256 listed on the Releases page
+```
+
+</details>
+
+No services to install. No permissions granted up front — MacSense asks for Full Disk Access only when you scan a path that needs it.
+
+<br />
+
+---
+
+<br />
+
 ## ✨ Why MacSense
 
 <table>
@@ -80,29 +137,6 @@ One native app for the four things you actually open a Mac utility for: clean ju
 </td>
 </tr>
 </table>
-
-## 📦 Requirements
-
-- macOS 13 Ventura or newer
-- ~80 MB disk space
-- Intel or Apple Silicon Mac
-
-## 🚀 Quickstart
-
-1. Download the latest **`MacSense.dmg`** from [Releases](https://github.com/veraiotech/veraio-macsense/releases/latest).
-2. Open the DMG, drag `MacSense.app` into `/Applications`.
-3. Launch from Launchpad or Spotlight.
-
-The DMG is signed with a Developer ID Application certificate and notarized by Apple — Gatekeeper opens it on first launch without warnings.
-
-Verify the download (optional):
-
-```bash
-shasum -a 256 MacSense.dmg
-# compare against the SHA-256 listed on the Releases page
-```
-
-No services to install. No permissions granted up front — MacSense asks for Full Disk Access only when you scan a path that needs it.
 
 ## 🎯 First Steps
 
