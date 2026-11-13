@@ -12,4 +12,4 @@ Every app uses cache space for:
 
 Modern Macs accumulate gigabytes here over time, especially from browsers, media apps, and Electron-based tools. The first launch after a clean is briefly slower because the app rebuilds what it needs — every subsequent launch is back to normal.
 
-MacSense skips caches that are clearly in active use (locked files, currently-open databases) and trashes the rest. Files go to the Trash, never delete-in-place.
+MacSense skips caches that are clearly in active use (locked files, currently-open databases) and deletes the rest. Caches are rebuilt on demand, so there is nothing to restore — and moving them to the Trash would free no space until you emptied it.

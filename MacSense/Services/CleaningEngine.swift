@@ -260,9 +260,10 @@ actor CleaningEngine {
             let contents = try fileManager.contentsOfDirectory(atPath: trashPath)
             for item in contents {
                 let fullPath = (trashPath as NSString).appendingPathComponent(item)
-                if let attrs = try? fileManager.attributesOfItem(atPath: fullPath) {
-                    totalFreed += (attrs[.size] as? Int64) ?? 0
-                }
+                // `attributesOfItem(.size)` on a directory reports the inode,
+                // not its contents — a Trash full of folders would report a
+                // few KB freed instead of gigabytes.
+                totalFreed += URL(fileURLWithPath: fullPath).recursiveAllocatedSize()
                 try fileManager.removeItem(atPath: fullPath)
             }
         } catch {

@@ -215,31 +215,18 @@ enum UninstallRemover {
         // Root-owned items land in the user's Trash still owned by root, which
         // makes emptying the Trash prompt again. Hand them back to the user.
         let chown = "/usr/sbin/chown -R $(/usr/bin/id -u):$(/usr/bin/id -g) \(qTrash) 2>/dev/null || true"
-        let asEscaped = (cmds + [chown]).joined(separator: "; ")
-            .replacingOccurrences(of: "\\", with: "\\\\")
-            .replacingOccurrences(of: "\"", with: "\\\"")
-        let source = "do shell script \"\(asEscaped)\" with administrator privileges"
-        return await withCheckedContinuation { continuation in
-            DispatchQueue.main.async {
-                var errorInfo: NSDictionary?
-                let script = NSAppleScript(source: source)
-                _ = script?.executeAndReturnError(&errorInfo)
-                if let errorInfo {
-                    let code = (errorInfo[NSAppleScript.errorNumber] as? Int) ?? 0
-                    if code != -128 {
-                        let msg = (errorInfo[NSAppleScript.errorMessage] as? String) ?? "\(errorInfo)"
-                        Logger.shared.log("admin trash failed (\(code)): \(msg)", level: .warning)
-                    }
-                }
-                let fm = FileManager.default
-                let removed = approved.filter { !fm.fileExists(atPath: $0.canonical.path) }.map(\.original)
-                let stillThere = approved.filter { fm.fileExists(atPath: $0.canonical.path) }.map(\.original)
-                continuation.resume(returning: (removed, failed + stillThere))
-            }
-        }
+        // The command's own exit status is not the verdict: a partial
+        // failure still moves some items, so disk state decides.
+        _ = await PrivilegedShell.run((cmds + [chown]).joined(separator: "; "),
+                                      logLabel: "admin trash")
+
+        let fm = FileManager.default
+        let removed = approved.filter { !fm.fileExists(atPath: $0.canonical.path) }.map(\.original)
+        let stillThere = approved.filter { fm.fileExists(atPath: $0.canonical.path) }.map(\.original)
+        return (removed, failed + stillThere)
     }
 
     private static func shellSingleQuote(_ s: String) -> String {
-        "'" + s.replacingOccurrences(of: "'", with: "'\\''") + "'"
+        PrivilegedShell.singleQuoted(s)
     }
 }

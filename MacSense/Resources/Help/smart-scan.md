@@ -9,7 +9,7 @@ Smart Scan walks each category in sequence — System Junk, User Cache, Trash, P
 Once the scan finishes, the Cleanup view shows a card per category with:
 
 - **Recoverable size** for that category.
-- **One-click Clean** that moves files to the Trash.
+- **One-click Clean** that deletes the items you selected.
 - **Detail sheet** for inspecting individual items before cleaning.
 
 Smart Scan also feeds the optional **Scheduled Scan** — when scheduled, MacSense runs the same logic in the background and posts a summary notification.

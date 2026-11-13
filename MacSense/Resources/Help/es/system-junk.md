@@ -10,4 +10,4 @@ Cubre tres tipos:
 - **Informes de errores** en `/Library/Application Support/CrashReporter`. Útiles justo después del fallo, inútiles meses después.
 - **Restos de instalaciones** dejados por instaladores de paquetes y actualizaciones.
 
-MacSense mueve todo a la papelera. Nada aquí contiene tus documentos ni preferencias — solo archivos generados por el sistema.
+MacSense elimina lo que encuentra. Nada aquí contiene tus documentos ni preferencias — solo archivos generados por el sistema.

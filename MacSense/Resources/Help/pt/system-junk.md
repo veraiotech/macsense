@@ -10,4 +10,4 @@ Cobre três grupos:
 - **Relatórios de falha** em `/Library/Application Support/CrashReporter`. Úteis logo após o crash, inúteis meses depois.
 - **Restos de instalações** deixados por instaladores de pacote e atualizações de apps.
 
-O MacSense move tudo para a Lixeira. Nada aqui contém seus documentos ou preferências — apenas artefatos gerados pelo sistema.
+O MacSense exclui o que encontra. Nada aqui contém seus documentos ou preferências — apenas artefatos gerados pelo sistema.

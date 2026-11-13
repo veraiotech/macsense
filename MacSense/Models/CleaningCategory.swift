@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Top-level cleanup buckets. Five categories — `developerCaches` rolls up
-/// what PureMac split into Xcode/Brew/Node/Docker because MacSense surfaces
+/// what the earlier scanner split into Xcode/Brew/Node/Docker because MacSense surfaces
 /// them as a single "developer cache" tile and expands on click.
 enum CleaningCategory: String, CaseIterable, Identifiable, Codable {
     case systemJunk        = "System Junk"

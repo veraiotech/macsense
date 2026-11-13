@@ -128,11 +128,7 @@ struct LoginItemsList: View {
     }
 
     private func openSystemSettingsLoginItems() {
-        if #available(macOS 13.0, *) {
-            SMAppService.openSystemSettingsLoginItems()
-        } else {
-            NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preferences.users")!)
-        }
+        SMAppService.openSystemSettingsLoginItems()
     }
 
     private var list: some View {

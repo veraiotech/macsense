@@ -1,6 +1,6 @@
 //
 //  AppPathFinder.swift
-//  PureMac
+//  MacSense
 //
 //  Heuristic file discovery engine that locates all filesystem artifacts
 //  belonging to a given macOS application. Uses multi-level matching
@@ -39,7 +39,7 @@ class AppPathFinder {
     /// the user so a missing file has a visible reason rather than looking
     /// like the scanner simply didn't find it.
     private var excluded: [ExcludedItem] = []
-    private let collectionQueue = DispatchQueue(label: "com.puremac.pathfinder.collection")
+    private let collectionQueue = DispatchQueue(label: "tech.veraio.macsense.pathfinder.collection")
 
     // Pre-computed cached identifiers (computed once in init, used in hot loop)
     private let normalizedBundleID: String
@@ -174,7 +174,7 @@ class AppPathFinder {
                 // For depth-2 matches in Library root, promote to the
                 // parent directory ONLY when the parent itself matches the
                 // app — that means the parent is a vendor folder belonging
-                // to us (e.g. `~/Library/Application Support/PureMac/`).
+                // to us (e.g. `~/Library/Application Support/MacSense/`).
                 // If the parent is a third-party tool's container that
                 // merely happens to contain a subfolder whose name
                 // includes our app token (e.g.
@@ -244,7 +244,7 @@ class AppPathFinder {
     }
 
     /// True for cache leaves whose name encodes a filesystem path —
-    /// `-Users-nikolai-Projects-…-PureMac`, `-private-tmp-…`, etc. These
+    /// `-Users-alice-Projects-…-MyApp`, `-private-tmp-…`, etc. These
     /// belong to project-aware tools (Claude Code, Cursor, npm, pnpm,
     /// VSCode workspace storage) that key per-project caches by URL-
     /// encoded absolute path. A coincidental match (the path happens to
@@ -256,7 +256,7 @@ class AppPathFinder {
         let prefixes = ["-users-", "-private-", "-volumes-", "-applications-", "-system-", "-tmp-", "-var-"]
         if prefixes.contains(where: { lower.hasPrefix($0) }) { return true }
         // Many path-encoded names also have 4+ dash-separated components
-        // (e.g. "users-nikolai-projects-puremac"). Only flag when the
+        // (e.g. "users-alice-projects-myapp"). Only flag when the
         // first component is plausibly a top-level filesystem directory.
         let parts = lower.split(separator: "-")
         if parts.count >= 4,

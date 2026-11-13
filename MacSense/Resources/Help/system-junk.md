@@ -10,4 +10,4 @@ System Junk covers three buckets:
 - **Crash reports** under `/Library/Application Support/CrashReporter`. Useful right after a crash, useless months later.
 - **Temporary install artifacts** left behind by package installers and app updates.
 
-MacSense moves anything it finds to the Trash. Nothing here holds user documents, preferences, or app data — only system-generated artifacts. If something the system actively needs gets removed, macOS rebuilds it on next launch.
+MacSense deletes what it finds. Nothing here holds user documents, preferences, or app data — only system-generated artifacts. If something the system actively needs gets removed, macOS rebuilds it on next launch.

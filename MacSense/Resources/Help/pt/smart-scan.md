@@ -9,7 +9,7 @@ O Smart Scan caminha por cada categoria em sequência — Lixo do sistema, Cache
 Após o término, a vista Limpeza mostra um cartão por categoria com:
 
 - **Tamanho recuperável** dessa categoria.
-- **Limpeza com um clique** que move arquivos para a Lixeira.
+- **Limpeza com um clique** que exclui os itens selecionados.
 - **Folha de detalhe** para inspecionar itens individuais antes de limpar.
 
 O Smart Scan também alimenta o **Escaneamento agendado** opcional — quando agendado, o MacSense roda a mesma lógica em segundo plano e publica uma notificação resumida.

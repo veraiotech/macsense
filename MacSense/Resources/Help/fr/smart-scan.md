@@ -9,7 +9,7 @@ Smart Scan parcourt chaque catégorie en séquence — Fichiers système, Cache 
 Une fois terminée, la vue Nettoyage affiche une carte par catégorie avec :
 
 - **Taille récupérable** pour cette catégorie.
-- **Nettoyage en un clic** qui déplace les fichiers vers la corbeille.
+- **Nettoyage en un clic** qui supprime les éléments sélectionnés.
 - **Feuille de détail** pour inspecter les éléments avant nettoyage.
 
 Smart Scan alimente aussi l'**Analyse planifiée** optionnelle — une fois planifiée, MacSense exécute la même logique en arrière-plan et publie une notification de résumé.

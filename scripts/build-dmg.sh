@@ -26,6 +26,10 @@ APP="$EXPORT/$SCHEME.app"
 DMG="$DIST/$SCHEME-$VERSION.dmg"
 
 DEV_ID="${DEV_ID:-}"   # Optional: "Developer ID Application: Your Name (TEAMID)"
+TEAM_ID="${TEAM_ID:-FQSR98WBB7}"
+# Keychain profile created by `xcrun notarytool store-credentials`.
+# Empty or absent means build + sign only, no notarization.
+NOTARY_PROFILE="${NOTARY_PROFILE:-veraio-notary}"
 
 echo "→ MacSense $VERSION"
 rm -rf "$DIST"
@@ -59,6 +63,7 @@ if [ -n "$DEV_ID" ]; then
     <key>method</key><string>developer-id</string>
     <key>signingStyle</key><string>manual</string>
     <key>signingCertificate</key><string>$DEV_ID</string>
+    <key>teamID</key><string>$TEAM_ID</string>
 </dict>
 </plist>
 PLIST
@@ -68,6 +73,20 @@ PLIST
 else
     echo "→ DEV_ID not set, copying unsigned .app from archive"
     cp -R "$ARCHIVE/Products/Applications/$SCHEME.app" "$EXPORT/"
+fi
+
+notarize() {
+    local target="$1" label="$2"
+    echo "→ Notarizing $label (this waits on Apple, can take minutes)"
+    xcrun notarytool submit "$target" --keychain-profile "$NOTARY_PROFILE" --wait
+    xcrun stapler staple "$3"
+}
+
+if [ -n "$DEV_ID" ] && [ -n "$NOTARY_PROFILE" ]; then
+    ZIP="$DIST/MacSense-app.zip"
+    ditto -c -k --keepParent "$APP" "$ZIP"
+    notarize "$ZIP" "app" "$APP"
+    rm -f "$ZIP"
 fi
 
 # Create the DMG with the standard layout: app icon on left,
@@ -101,13 +120,18 @@ if [ -n "$DEV_ID" ]; then
     codesign --sign "$DEV_ID" "$DMG"
 fi
 
+if [ -n "$DEV_ID" ] && [ -n "$NOTARY_PROFILE" ]; then
+    notarize "$DMG" "DMG" "$DMG"
+    xcrun stapler validate "$DMG"
+    spctl -a -t open --context context:primary-signature -v "$DMG"
+fi
+
 echo
 echo "✓ Built: $DMG"
 echo "  Size:  $(du -h "$DMG" | cut -f1)"
+if [ -z "$DEV_ID" ]; then
+    echo "  Note:  unsigned (DEV_ID unset) — for local testing only"
+elif [ -z "$NOTARY_PROFILE" ]; then
+    echo "  Note:  signed but NOT notarized (NOTARY_PROFILE unset)"
+fi
 echo
-[ -n "$DEV_ID" ] && cat <<NOTE
-Next: notarize the DMG so Gatekeeper accepts it on other Macs.
-    xcrun notarytool submit "$DMG" \\
-        --keychain-profile "AC_PROFILE" --wait
-    xcrun stapler staple "$DMG"
-NOTE

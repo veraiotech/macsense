@@ -12,4 +12,4 @@ Jede App nutzt Cache für:
 
 Moderne Macs sammeln über die Zeit Gigabytes an, vor allem aus Browsern, Medien-Apps und Electron-Tools. Der erste Start nach der Bereinigung ist kurz langsamer, danach normal.
 
-MacSense überspringt aktiv genutzte Caches (gesperrte Dateien, geöffnete Datenbanken) und verschiebt den Rest in den Papierkorb, niemals direktes Löschen.
+MacSense überspringt aktiv genutzte Caches (gesperrte Dateien, geöffnete Datenbanken) und löscht den Rest. Caches werden bei Bedarf neu erzeugt; über den Papierkorb würde kein Speicher frei, bevor Sie ihn leeren.

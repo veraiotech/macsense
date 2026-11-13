@@ -692,7 +692,7 @@ final class LoginItemScanner {
                               tolerateNotLoaded: Bool = false) async -> Bool {
         if requiresAdmin {
             let cmd = "/bin/launchctl " + arguments.map { "'\($0.replacingOccurrences(of: "'", with: "'\\''"))'" }.joined(separator: " ")
-            return await runWithAdmin(cmd)
+            return await PrivilegedShell.run(cmd, logLabel: "admin launchctl")
         }
         let task = Process()
         task.executableURL = URL(fileURLWithPath: "/bin/launchctl")
@@ -726,34 +726,9 @@ final class LoginItemScanner {
 
     private func deleteWithAdmin(path: String) async -> Bool {
         let escaped = path.replacingOccurrences(of: "'", with: "'\\''")
-        return await runWithAdmin("/bin/rm -f '\(escaped)'")
+        return await PrivilegedShell.run("/bin/rm -f '\(escaped)'", logLabel: "admin delete")
     }
 
-    /// Runs a shell command via AppleScript's `do shell script ... with
-    /// administrator privileges`. Pops the standard admin-password sheet.
-    private func runWithAdmin(_ shellCommand: String) async -> Bool {
-        let asEscaped = shellCommand
-            .replacingOccurrences(of: "\\", with: "\\\\")
-            .replacingOccurrences(of: "\"", with: "\\\"")
-        let source = "do shell script \"\(asEscaped)\" with administrator privileges"
-        return await withCheckedContinuation { continuation in
-            DispatchQueue.main.async {
-                var errorInfo: NSDictionary?
-                let script = NSAppleScript(source: source)
-                _ = script?.executeAndReturnError(&errorInfo)
-                if let errorInfo {
-                    let code = (errorInfo[NSAppleScript.errorNumber] as? Int) ?? 0
-                    if code != -128 {
-                        let msg = (errorInfo[NSAppleScript.errorMessage] as? String) ?? "\(errorInfo)"
-                        Logger.shared.log("admin shell failed (\(code)): \(msg)", level: .warning)
-                    }
-                    continuation.resume(returning: false)
-                } else {
-                    continuation.resume(returning: true)
-                }
-            }
-        }
-    }
 
     private func runReadingStdout(executable: String, arguments: [String]) -> String {
         let task = Process()

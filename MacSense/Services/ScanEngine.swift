@@ -133,10 +133,25 @@ actor ScanEngine {
 
     private func scanUserCache() -> CategoryResult {
         var items: [CleanableItem] = []
-        // Only exclude Homebrew since it has its own dedicated scan category
-        let excludedRootPaths = Set([
-            "\(home)/Library/Caches/Homebrew",
-        ].map(normalizePath))
+        // Every path owned by another category is excluded here, or its
+        // bytes land in two buckets and the "recoverable" total
+        // over-reports. The dev-cache catalog is the source of truth, so
+        // adding a tool there needs no change in this function.
+        // MacSense's own cache holds the storage snapshot that makes
+        // re-entering the Storage tab instant — offering to delete it
+        // would have the app eat its own state.
+        let ownCacheDir = FileManager.default
+            .urls(for: .cachesDirectory, in: .userDomainMask).first
+            .map { $0.appendingPathComponent(Bundle.main.bundleIdentifier ?? "tech.veraio.macsense").path }
+        let excludedRootPaths = Set((
+            DevCacheCatalog.all.flatMap(\.paths)
+            + [
+                "\(home)/Library/Caches/Homebrew",
+                "\(home)/Library/Caches/Yarn",
+                "\(home)/.npm",
+            ]
+            + [ownCacheDir].compactMap { $0 }
+        ).map(normalizePath))
 
         // Dynamically enumerate ~/Library/Caches/ so every subdirectory is visible
         let cachePath = "\(home)/Library/Caches"
@@ -148,25 +163,6 @@ actor ScanEngine {
             excluding: excludedRootPaths
         )
         items.append(contentsOf: scanned)
-
-        // Also scan for npm/pip/yarn caches
-        let devCaches = [
-            "\(home)/.npm/_cacache",
-            "\(home)/.cache/pip",
-            "\(home)/.cache/yarn",
-            "\(home)/.cache/pnpm",
-            "\(home)/Library/Caches/pip",
-        ]
-
-        for path in devCaches {
-            if let item = makeCleanupItem(
-                name: URL(fileURLWithPath: path).lastPathComponent,
-                path: path,
-                category: .userCache
-            ) {
-                items.append(item)
-            }
-        }
 
         let uniqueItems = deduplicatedItems(items)
         let totalSize = uniqueItems.reduce(0) { $0 + $1.size }

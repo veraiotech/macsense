@@ -4,7 +4,7 @@ Thanks for considering a contribution! This guide covers what we expect from PRs
 
 ## Reporting bugs
 
-Open an [issue](https://github.com/nikolayAsparuhov/MacSense/issues/new) with:
+Open an [issue](https://github.com/veraiotech/veraio-macsense/issues/new) with:
 
 - macOS version (`sw_vers -productVersion`)
 - Mac model (`sysctl hw.model`)
@@ -15,7 +15,7 @@ Open an [issue](https://github.com/nikolayAsparuhov/MacSense/issues/new) with:
 
 ## Suggesting features
 
-Open a [discussion](https://github.com/nikolayAsparuhov/MacSense/discussions) first if you're not sure the idea fits. For confirmed work, open an issue tagged `enhancement` and describe:
+Open a [discussion](https://github.com/veraiotech/veraio-macsense/discussions) first if you're not sure the idea fits. For confirmed work, open an issue tagged `enhancement` and describe:
 
 - The problem you're solving (not just the solution)
 - Who benefits
@@ -95,4 +95,4 @@ Be kind. No harassment, no slurs, no spam. Maintainers reserve the right to clos
 
 ## Questions?
 
-Open a [discussion](https://github.com/nikolayAsparuhov/MacSense/discussions). We're happy to help you get oriented.
+Open a [discussion](https://github.com/veraiotech/veraio-macsense/discussions). We're happy to help you get oriented.

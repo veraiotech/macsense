@@ -12,7 +12,7 @@ The latest minor release receives security fixes. Older versions are best-effort
 
 **Please do not open a public issue for security reports.**
 
-Email the maintainers privately or use [GitHub's private security advisory](https://github.com/nikolayAsparuhov/MacSense/security/advisories/new):
+Email the maintainers privately or use [GitHub's private security advisory](https://github.com/veraiotech/veraio-macsense/security/advisories/new):
 
 1. Open the linked page
 2. Describe the issue, impact, and reproduction steps

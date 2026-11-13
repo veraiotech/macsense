@@ -10,4 +10,4 @@ Drei Eimer:
 - **Absturzberichte** unter `/Library/Application Support/CrashReporter`. Direkt nach einem Absturz nützlich, Monate später nutzlos.
 - **Installations-Reste** von Paket-Installern und App-Updates.
 
-MacSense verschiebt alles in den Papierkorb. Nichts hier enthält Dokumente oder Einstellungen — nur Systemartefakte.
+MacSense löscht, was es findet. Nichts hier enthält Dokumente oder Einstellungen — nur Systemartefakte.

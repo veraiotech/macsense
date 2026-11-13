@@ -767,31 +767,10 @@ final class AppState: ObservableObject {
     /// Flush macOS DNS cache (`dscacheutil -flushcache; killall -HUP
     /// mDNSResponder`). Requires admin — pops the auth sheet.
     func flushDNSCache() async -> Bool {
-        await runAdminShell("/usr/bin/dscacheutil -flushcache && /usr/bin/killall -HUP mDNSResponder")
+        await PrivilegedShell.run("/usr/bin/dscacheutil -flushcache && /usr/bin/killall -HUP mDNSResponder",
+                                  logLabel: "DNS flush")
     }
 
-    private nonisolated func runAdminShell(_ command: String) async -> Bool {
-        let asEscaped = command
-            .replacingOccurrences(of: "\\", with: "\\\\")
-            .replacingOccurrences(of: "\"", with: "\\\"")
-        let source = "do shell script \"\(asEscaped)\" with administrator privileges"
-        return await withCheckedContinuation { continuation in
-            DispatchQueue.main.async {
-                var errorInfo: NSDictionary?
-                let script = NSAppleScript(source: source)
-                _ = script?.executeAndReturnError(&errorInfo)
-                if let errorInfo {
-                    let code = (errorInfo[NSAppleScript.errorNumber] as? Int) ?? 0
-                    if code != -128 {
-                        Logger.shared.log("admin shell failed (\(code))", level: .warning)
-                    }
-                    continuation.resume(returning: false)
-                } else {
-                    continuation.resume(returning: true)
-                }
-            }
-        }
-    }
 
     /// Trash currently-selected large files. Files live in user content
     /// directories (Downloads / Documents / Desktop / Movies / Music /

@@ -6,13 +6,13 @@
 
 <img src="docs/screenshots/hero.png" alt="MacSense hero screenshot" width="820" />
 
-[Download](https://github.com/nikolayAsparuhov/MacSense/releases/latest) · [Quickstart](#-quickstart) · [Features](#-features-at-a-glance) · [Screenshots](#-screenshots) · [FAQ](#-faq) · [Changelog](CHANGELOG.md)
+[Download](https://github.com/veraiotech/veraio-macsense/releases/latest) · [Quickstart](#-quickstart) · [Features](#-features-at-a-glance) · [Screenshots](#-screenshots) · [FAQ](#-faq) · [Changelog](CHANGELOG.md)
 
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://swift.org)
 [![Platform](https://img.shields.io/badge/macOS-13%2B-blue.svg)](#)
 [![Universal](https://img.shields.io/badge/binary-universal%20(Intel%20%2B%20Apple%20Silicon)-blueviolet.svg)](#)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![CI](https://github.com/nikolayAsparuhov/MacSense/actions/workflows/build.yml/badge.svg)](https://github.com/nikolayAsparuhov/MacSense/actions)
+[![CI](https://github.com/veraiotech/veraio-macsense/actions/workflows/build.yml/badge.svg)](https://github.com/veraiotech/veraio-macsense/actions)
 
 </div>
 
@@ -89,7 +89,7 @@ One native app for the four things you actually open a Mac utility for: clean ju
 
 ## 🚀 Quickstart
 
-1. Download the latest **`MacSense.dmg`** from [Releases](https://github.com/nikolayAsparuhov/MacSense/releases/latest).
+1. Download the latest **`MacSense.dmg`** from [Releases](https://github.com/veraiotech/veraio-macsense/releases/latest).
 2. Open the DMG, drag `MacSense.app` into `/Applications`.
 3. Launch from Launchpad or Spotlight.
 
@@ -193,8 +193,8 @@ Requirements:
 - (Optional) [`xcodegen`](https://github.com/yonaskolb/XcodeGen) — only needed if you edit `project.yml`
 
 ```bash
-git clone https://github.com/nikolayAsparuhov/MacSense.git
-cd MacSense
+git clone https://github.com/veraiotech/veraio-macsense.git
+cd veraio-macsense
 open MacSense.xcodeproj
 # ⌘R in Xcode
 ```
@@ -245,7 +245,7 @@ No analytics, no crash reporters, no account, no telemetry. The single outbound 
 <details>
 <summary><b>Can MacSense break my system?</b></summary>
 
-Cleanup actions move files to the Trash — you can restore anything until you empty the bin. Uninstalls go through a path validator that only permits strict descendants of the ~50 locations the scanner searches, and refuses filesystem roots, your home folder, every mounted volume, and config folders like `~/.ssh` and `~/.aws` outright; every path is re-validated in the moment before it is deleted. Permanent deletion is opt-in per uninstall and covers your own files only — anything needing an administrator password still goes to the Trash, because MacSense never runs `rm` as root. Login items registered through SMAppService (Apple's recommended API) cannot be removed by third-party apps; MacSense stops and disables the job, and tells you macOS may still list it until it prunes its own database.
+Cleanup deletes what it finds. Those are caches, logs and temporary files that apps rebuild on demand — moving them to the Trash would free no space until you emptied it. Storage deletions and app uninstalls move to the Trash instead. Uninstalls go through a path validator that only permits strict descendants of the ~50 locations the scanner searches, and refuses filesystem roots, your home folder, every mounted volume, and config folders like `~/.ssh` and `~/.aws` outright; every path is re-validated in the moment before it is deleted. Permanent deletion is opt-in per uninstall and covers your own files only — anything needing an administrator password still goes to the Trash, because MacSense never runs `rm` as root. Login items registered through SMAppService (Apple's recommended API) cannot be removed by third-party apps; MacSense stops and disables the job, and tells you macOS may still list it until it prunes its own database.
 
 </details>
 
@@ -261,7 +261,8 @@ The dev-cache catalog is data-driven and lives in `MacSense/Models/CleaningCateg
 MacSense never uploads your files, scan results, app inventory, or system metrics. The single network call the app makes is an opt-in public-IP lookup against `api.ipify.org` (with `ifconfig.me`, `icanhazip.com`, `ipv4.icanhazip.com` as fallbacks). Disable your network and the rest of the app still works fully offline.
 
 Destructive actions:
-- Files move to the Trash by default; permanent deletion is opt-in per uninstall and never runs as root
+- Storage deletions and uninstalls move to the Trash by default; permanent deletion is opt-in per uninstall and never runs as root
+- Cleanup deletes directly — a cache in the Trash still occupies the disk you are trying to reclaim
 - Every uninstall path must be a strict descendant of a scanned location, and is re-checked immediately before deletion
 - Running apps are quit and their launch agents booted out before any file is removed; if a process won't quit, nothing is deleted
 - Login items registered via SMAppService cannot be removed by third-party apps (macOS restriction); MacSense stops and disables the job and surfaces the residual entry
@@ -286,8 +287,8 @@ Quick rules:
 
 ## 💬 Support
 
-- [Open an issue](https://github.com/nikolayAsparuhov/MacSense/issues) for bugs and feature requests
-- [Discussions](https://github.com/nikolayAsparuhov/MacSense/discussions) for questions and ideas
-- [Releases](https://github.com/nikolayAsparuhov/MacSense/releases) for version history and SHA-256 checksums
+- [Open an issue](https://github.com/veraiotech/veraio-macsense/issues) for bugs and feature requests
+- [Discussions](https://github.com/veraiotech/veraio-macsense/discussions) for questions and ideas
+- [Releases](https://github.com/veraiotech/veraio-macsense/releases) for version history and SHA-256 checksums
 - [Changelog](CHANGELOG.md) for what changed between versions
 - Star the repo if MacSense saved you some disk ⭐

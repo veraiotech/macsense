@@ -12,4 +12,4 @@ Cada app usa caché para:
 
 Los Mac modernos acumulan gigabytes con el tiempo, sobre todo de navegadores, apps multimedia y herramientas Electron. El primer arranque tras la limpieza es algo más lento; los siguientes vuelven a la normalidad.
 
-MacSense omite las cachés en uso activo (archivos bloqueados, bases de datos abiertas) y mueve el resto a la papelera, nunca elimina directamente.
+MacSense omite las cachés en uso activo (archivos bloqueados, bases de datos abiertas) y elimina el resto. Las cachés se regeneran cuando hacen falta; enviarlas a la papelera no liberaría espacio hasta vaciarla.

@@ -7,7 +7,6 @@ import AppKit
 /// notifications. The deep-link payload (`section: cleanup`) is read
 /// back by `NotificationDelegate` when the user taps the banner.
 enum NotificationsService {
-    static let cleanupCategoryIdentifier = "MacSense.Cleanup.Schedule"
     static let cleanupSectionPayloadKey = "section"
 
     /// Asks the system for alert + sound permission once. Subsequent

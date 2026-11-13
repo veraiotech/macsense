@@ -1,3 +1,4 @@
+import CoreLocation
 import Foundation
 import CoreWLAN
 
@@ -10,6 +11,7 @@ actor WiFiInfoFetcher {
     private init() {}
 
     func fetch() async -> WiFiInfo {
+        WiFiLocationAuthorization.shared.requestIfNeeded()
         async let publicIPTask = Self.fetchPublicIP()
         async let gatewayTask = Self.detached { Self.gatewayIP() }
         async let dnsTask = Self.detached { Self.dnsServers() }
@@ -266,5 +268,34 @@ actor WiFiInfoFetcher {
         } catch {
             return ""
         }
+    }
+}
+
+
+/// macOS 14 moved SSID and BSSID behind Location Services: `CWInterface`
+/// returns nil for both unless the app is authorized, even when it is not
+/// sandboxed. Everything else CoreWLAN reports (RSSI, channel, PHY mode,
+/// security) stays readable without it, so the rest of the Wi-Fi sheet
+/// works whether or not the user grants this.
+///
+/// The prompt is raised the first time the user opens the Wi-Fi sheet,
+/// not at launch — asking for location before the user has expressed any
+/// interest in network details reads as a land grab.
+final class WiFiLocationAuthorization: NSObject, CLLocationManagerDelegate, @unchecked Sendable {
+    static let shared = WiFiLocationAuthorization()
+
+    private let manager = CLLocationManager()
+    private var hasAsked = false
+
+    private override init() {
+        super.init()
+        manager.delegate = self
+    }
+
+    func requestIfNeeded() {
+        guard !hasAsked else { return }
+        hasAsked = true
+        guard manager.authorizationStatus == .notDetermined else { return }
+        manager.requestWhenInUseAuthorization()
     }
 }

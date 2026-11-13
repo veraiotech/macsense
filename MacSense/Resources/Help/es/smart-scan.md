@@ -9,7 +9,7 @@ Smart Scan recorre cada categoría en secuencia — Basura del sistema, Caché d
 Tras finalizar, la vista de Limpieza muestra una tarjeta por categoría con:
 
 - **Tamaño recuperable** de esa categoría.
-- **Limpieza con un clic** que mueve los archivos a la papelera.
+- **Limpieza con un clic** que elimina los elementos seleccionados.
 - **Hoja de detalle** para inspeccionar elementos antes de limpiar.
 
 Smart Scan también alimenta el **Escaneo programado** opcional — al programarlo, MacSense ejecuta la misma lógica en segundo plano y publica una notificación con el resumen.

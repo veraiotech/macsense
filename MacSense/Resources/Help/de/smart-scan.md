@@ -9,7 +9,7 @@ Smart Scan durchläuft jede Kategorie nacheinander — Systemmüll, Benutzer-Cac
 Nach Abschluss zeigt die Cleanup-Ansicht eine Karte pro Kategorie mit:
 
 - **Wiederherstellbarer Größe** für diese Kategorie.
-- **Bereinigung mit einem Klick**, die Dateien in den Papierkorb verschiebt.
+- **Bereinigung mit einem Klick**, die die ausgewählten Objekte löscht.
 - **Detail-Sheet** zur Inspektion einzelner Einträge vor der Bereinigung.
 
 Smart Scan füttert auch den optionalen **Geplanten Scan** — geplant ausgeführt führt MacSense dieselbe Logik im Hintergrund aus und sendet eine Zusammenfassungs-Mitteilung.

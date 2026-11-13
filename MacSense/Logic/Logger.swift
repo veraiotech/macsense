@@ -43,7 +43,7 @@ final class Logger: ObservableObject {
     private let osLogger: os.Logger
 
     nonisolated private init() {
-        let subsystem = Bundle.main.bundleIdentifier ?? "com.puremac.app"
+        let subsystem = Bundle.main.bundleIdentifier ?? "tech.veraio.macsense"
         self.osLogger = os.Logger(subsystem: subsystem, category: "general")
     }
 

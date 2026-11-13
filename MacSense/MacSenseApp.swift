@@ -68,7 +68,7 @@ struct MacSenseApp: App {
             } message: {
                 Text(Localization.shared.t(.fdaPromptBody))
             }
-            .task {
+            .task { [appState] in
                 appDelegate.appState = appState
                 NotificationDelegate.onCleanupTap = { [weak appState] in
                     appState?.selectedSection = .cleanup

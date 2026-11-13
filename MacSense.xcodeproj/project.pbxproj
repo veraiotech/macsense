@@ -11,6 +11,7 @@
 		A1B2C3D4E5F60000AA0000E8 /* UninstallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60000FF0000E8 /* UninstallLog.swift */; };
 		A1B2C3D4E5F60000AA0000E7 /* DeletionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60000FF0000E7 /* DeletionMode.swift */; };
 		A1B2C3D4E5F60000AA0000E6 /* UninstallPreflight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60000FF0000E6 /* UninstallPreflight.swift */; };
+		A1B2C3D4E5F60000AA0000EA /* PrivilegedShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60000FF0000EA /* PrivilegedShell.swift */; };
 		A1B2C3D4E5F60000AA0000E5 /* UninstallSafetyViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60000FF0000E5 /* UninstallSafetyViews.swift */; };
 		A1B2C3D4E5F60000AA0000E4 /* UninstallPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60000FF0000E4 /* UninstallPlan.swift */; };
 		A1B2C3D4E5F60000AA0000E3 /* MatchReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60000FF0000E3 /* MatchReason.swift */; };
@@ -21,7 +22,6 @@
 		0EBE8255985838E54F540397 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F858D3E270C96A15558FC16 /* OnboardingView.swift */; };
 		10CE05EFE49B46FEB233F1F4 /* InstalledAppsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBBD0FFC4F58F1C9CEFDB6 /* InstalledAppsList.swift */; };
 		132888A198C7B6C67D0EC712 /* ScanProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73523E2150E47543CAC9D74 /* ScanProgressBar.swift */; };
-		1D190C4D248F262E20114892 /* OrphanSafetyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CB715564FD2AB67F30A9B2 /* OrphanSafetyPolicy.swift */; };
 		2043FD5A5CCFCADA9B5CA84C /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EA17D7FC4E013EFAD3CE00 /* AppState.swift */; };
 		258124F905E5A331E5FFBEA2 /* GlossyCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E6E325A2876B749020910 /* GlossyCard.swift */; };
 		2989C1B1BCBBE2F38BD1156D /* SectionBackdrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC073906473D28FE4E4265D /* SectionBackdrop.swift */; };
@@ -121,11 +121,11 @@
 		A1B2C3D4E5F60000FF0000E8 /* UninstallLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UninstallLog.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F60000FF0000E7 /* DeletionMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletionMode.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F60000FF0000E6 /* UninstallPreflight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UninstallPreflight.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60000FF0000EA /* PrivilegedShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivilegedShell.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F60000FF0000E5 /* UninstallSafetyViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UninstallSafetyViews.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F60000FF0000E4 /* UninstallPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UninstallPlan.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F60000FF0000E3 /* MatchReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchReason.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F60000FF0000E2 /* UninstallPathValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UninstallPathValidator.swift; sourceTree = "<group>"; };
-		02CB715564FD2AB67F30A9B2 /* OrphanSafetyPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrphanSafetyPolicy.swift; sourceTree = "<group>"; };
 		06000801C689641F5609B6CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		089E6E325A2876B749020910 /* GlossyCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossyCard.swift; sourceTree = "<group>"; };
 		11989E0971DB1CB7EF1E07EC /* CleaningEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleaningEngine.swift; sourceTree = "<group>"; };
@@ -259,6 +259,7 @@
 				A1B2C3D4E5F60000FF0000E9 /* UninstallRemover.swift */,
 				A1B2C3D4E5F60000FF0000E8 /* UninstallLog.swift */,
 				A1B2C3D4E5F60000FF0000E6 /* UninstallPreflight.swift */,
+				A1B2C3D4E5F60000FF0000EA /* PrivilegedShell.swift */,
 				A1B2C3D4E5F60000FF000003 /* BackgroundScheduler.swift */,
 				11989E0971DB1CB7EF1E07EC /* CleaningEngine.swift */,
 				213B613B0CD8E3CC52F1BDC1 /* FullDiskAccessManager.swift */,
@@ -389,7 +390,6 @@
 				A1B2C3D4E5F60000FF000022 /* Localization.swift */,
 				A1B2C3D4E5F60000FF00002D /* Translations */,
 				99F66E2DC820DED24B735653 /* Logger.swift */,
-				02CB715564FD2AB67F30A9B2 /* OrphanSafetyPolicy.swift */,
 				96C3C523855D4C369A2074C0 /* ScanCore.c */,
 				8A748C9AB71DF0FC701F02D9 /* ScanCore.h */,
 				E20ACCE91CA95A22873264AE /* StringNormalization.swift */,
@@ -562,6 +562,7 @@
 				A1B2C3D4E5F60000AA0000E8 /* UninstallLog.swift in Sources */,
 				A1B2C3D4E5F60000AA0000E7 /* DeletionMode.swift in Sources */,
 				A1B2C3D4E5F60000AA0000E6 /* UninstallPreflight.swift in Sources */,
+				A1B2C3D4E5F60000AA0000EA /* PrivilegedShell.swift in Sources */,
 				A1B2C3D4E5F60000AA0000E5 /* UninstallSafetyViews.swift in Sources */,
 				A1B2C3D4E5F60000AA0000E4 /* UninstallPlan.swift in Sources */,
 				A1B2C3D4E5F60000AA0000E3 /* MatchReason.swift in Sources */,
@@ -609,7 +610,6 @@
 				DD44ED1FC6A966BFFD154B97 /* ProcessLister.swift in Sources */,
 				D11BA34A675950E6B9190EAD /* ProcessListSheet.swift in Sources */,
 				0EBE8255985838E54F540397 /* OnboardingView.swift in Sources */,
-				1D190C4D248F262E20114892 /* OrphanSafetyPolicy.swift in Sources */,
 				61D5987AF392F85D29C4EA7B /* PerformanceMonitor.swift in Sources */,
 				686ABE1AC27697DF429CC78C /* PerformanceSample.swift in Sources */,
 				52349E912EB86CBA2C53DE0F /* PerformanceView.swift in Sources */,
@@ -705,13 +705,14 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = MacSense/MacSense.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = HELVICA000;
+				DEVELOPMENT_TEAM = FQSR98WBB7;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -796,7 +797,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = HELVICA000;
+				DEVELOPMENT_TEAM = FQSR98WBB7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

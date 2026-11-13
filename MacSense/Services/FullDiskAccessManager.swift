@@ -1,7 +1,7 @@
 import AppKit
 import Foundation
 
-/// Detects whether Full Disk Access (FDA) has been granted to PureMac.
+/// Detects whether Full Disk Access (FDA) has been granted to MacSense.
 /// Without FDA, macOS TCC blocks access to ~/Desktop, ~/Documents, ~/Mail,
 /// ~/.Trash, and other app containers even for non-sandboxed apps.
 final class FullDiskAccessManager {
@@ -13,15 +13,29 @@ final class FullDiskAccessManager {
     ///
     /// Important: do NOT probe `~/.Trash` or `~/Desktop` — those are NOT
     /// TCC-protected on all macOS versions, so reading them succeeds without
-    /// FDA and never registers PureMac with TCC. The user's bug
-    /// ("PureMac does not appear in Full Disk Access list") was caused by the
+    /// FDA and never registers MacSense with TCC. The user's bug
+    /// ("MacSense does not appear in Full Disk Access list") was caused by the
     /// previous probe returning early on those paths and never touching a
     /// real TCC-protected file.
     ///
     /// We probe paths that are always TCC-gated. We also force a real read
     /// (not just `isReadableFile`) so the kernel records the access attempt
-    /// and adds PureMac to the Full Disk Access list automatically.
+    /// and adds MacSense to the Full Disk Access list automatically.
     var hasFullDiskAccess: Bool {
+        // Probing opens and reads real files, and every scan entry point
+        // calls this from the main actor. A grant never flips back to
+        // denied within a session, so the expensive answer is only worth
+        // computing until the first `true`; a `false` is always re-probed
+        // because the user may be granting access right now.
+        if grantedThisSession { return true }
+        let granted = probeTCCProtectedPaths()
+        if granted { grantedThisSession = true }
+        return granted
+    }
+
+    private var grantedThisSession = false
+
+    private func probeTCCProtectedPaths() -> Bool {
         let home = FileManager.default.homeDirectoryForCurrentUser.path
         let probes = [
             "/Library/Application Support/com.apple.TCC/TCC.db",

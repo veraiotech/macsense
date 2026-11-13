@@ -12,4 +12,4 @@ Cada app usa cache para:
 
 Macs modernos acumulam gigabytes ao longo do tempo, especialmente de navegadores, apps de mídia e ferramentas Electron. O primeiro lançamento após limpeza é levemente mais lento; os seguintes voltam ao normal.
 
-O MacSense ignora caches em uso ativo (arquivos travados, bancos abertos) e move o resto para a Lixeira, nunca exclui direto.
+O MacSense ignora caches em uso ativo (arquivos travados, bancos abertos) e exclui o resto. Caches são recriados quando necessário; mandá-los para a Lixeira não liberaria espaço até você esvaziá-la.

@@ -12,4 +12,4 @@ Chaque app utilise le cache pour :
 
 Les Mac modernes accumulent des gigaoctets au fil du temps, surtout avec les navigateurs, apps multimédia et outils Electron. Le premier lancement après nettoyage est légèrement plus lent ; les suivants reviennent à la normale.
 
-MacSense ignore les caches en cours d'utilisation (fichiers verrouillés, bases de données ouvertes) et déplace le reste vers la corbeille, jamais de suppression directe.
+MacSense ignore les caches en cours d'utilisation (fichiers verrouillés, bases de données ouvertes) et supprime le reste. Les caches sont reconstruits à la demande ; les mettre à la corbeille ne libérerait rien tant qu'elle n'est pas vidée.
