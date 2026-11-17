@@ -6,13 +6,13 @@
 
 <img src="docs/screenshots/hero.png" alt="MacSense hero screenshot" width="820" />
 
-[Download](https://github.com/veraiotech/veraio-macsense/releases/latest) · [Quickstart](#-quickstart) · [Features](#-features-at-a-glance) · [Screenshots](#-screenshots) · [FAQ](#-faq) · [Changelog](CHANGELOG.md)
+[Download](https://github.com/veraiotech/macsense/releases/latest) · [Quickstart](#-quickstart) · [Features](#-features-at-a-glance) · [Screenshots](#-screenshots) · [FAQ](#-faq) · [Changelog](CHANGELOG.md)
 
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://swift.org)
 [![Platform](https://img.shields.io/badge/macOS-13%2B-blue.svg)](#)
 [![Universal](https://img.shields.io/badge/binary-universal%20(Intel%20%2B%20Apple%20Silicon)-blueviolet.svg)](#)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![CI](https://github.com/veraiotech/veraio-macsense/actions/workflows/build.yml/badge.svg)](https://github.com/veraiotech/veraio-macsense/actions)
+[![CI](https://github.com/veraiotech/macsense/actions/workflows/build.yml/badge.svg)](https://github.com/veraiotech/macsense/actions)
 
 </div>
 
@@ -34,7 +34,7 @@ One native app for the four things you actually open a Mac utility for: clean ju
 
 ### 1 — Download
 
-### [⬇ MacSense.dmg](https://github.com/veraiotech/veraio-macsense/releases/latest)
+### [⬇ MacSense.dmg](https://github.com/veraiotech/macsense/releases/latest)
 
 <sub>Latest release · universal binary</sub>
 
@@ -227,8 +227,8 @@ Requirements:
 - (Optional) [`xcodegen`](https://github.com/yonaskolb/XcodeGen) — only needed if you edit `project.yml`
 
 ```bash
-git clone https://github.com/veraiotech/veraio-macsense.git
-cd veraio-macsense
+git clone https://github.com/veraiotech/macsense.git
+cd macsense
 open MacSense.xcodeproj
 # ⌘R in Xcode
 ```
@@ -321,8 +321,8 @@ Quick rules:
 
 ## 💬 Support
 
-- [Open an issue](https://github.com/veraiotech/veraio-macsense/issues) for bugs and feature requests
-- [Discussions](https://github.com/veraiotech/veraio-macsense/discussions) for questions and ideas
-- [Releases](https://github.com/veraiotech/veraio-macsense/releases) for version history and SHA-256 checksums
+- [Open an issue](https://github.com/veraiotech/macsense/issues) for bugs and feature requests
+- [Discussions](https://github.com/veraiotech/macsense/discussions) for questions and ideas
+- [Releases](https://github.com/veraiotech/macsense/releases) for version history and SHA-256 checksums
 - [Changelog](CHANGELOG.md) for what changed between versions
 - Star the repo if MacSense saved you some disk ⭐

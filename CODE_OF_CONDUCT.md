@@ -23,7 +23,7 @@ Unacceptable behavior:
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by opening a [private security advisory](https://github.com/veraiotech/veraio-macsense/security/advisories/new) (used here as a private channel) or contacting the maintainers directly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by opening a [private security advisory](https://github.com/veraiotech/macsense/security/advisories/new) (used here as a private channel) or contacting the maintainers directly.
 
 All complaints will be reviewed and investigated and will result in a response deemed necessary and appropriate. Maintainers are obligated to maintain confidentiality with regard to the reporter of an incident.
 
