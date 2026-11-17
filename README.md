@@ -6,7 +6,7 @@
 
 <img src="docs/screenshots/hero.png" alt="MacSense hero screenshot" width="820" />
 
-[Download](https://github.com/veraiotech/macsense/releases/latest) · [Quickstart](#-quickstart) · [Features](#-features-at-a-glance) · [Screenshots](#-screenshots) · [FAQ](#-faq) · [Changelog](CHANGELOG.md)
+[Download](https://github.com/veraiotech/macsense/releases/latest) · [Features](#-features-at-a-glance) · [Screenshots](#-screenshots) · [FAQ](#-faq) · [Changelog](CHANGELOG.md)
 
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)](https://swift.org)
 [![Platform](https://img.shields.io/badge/macOS-13%2B-blue.svg)](#)
@@ -22,60 +22,15 @@ One native app for the four things you actually open a Mac utility for: clean ju
 
 ---
 
-<br />
-
 <div align="center">
 
-## 🚀 Quickstart
+### [⬇&nbsp; Download MacSense.dmg](https://github.com/veraiotech/macsense/releases/latest)
 
-**macOS 13 Ventura or newer · Intel or Apple Silicon · ~80 MB**
-
-<br />
-
-### 1 — Download
-
-### [⬇ MacSense.dmg](https://github.com/veraiotech/macsense/releases/latest)
-
-<sub>Latest release · universal binary</sub>
-
-<br />
-
-### 2 — Drag into Applications
-
-<sub>Open the DMG, drag <b>MacSense.app</b> onto the <b>Applications</b> folder.</sub>
-
-<br />
-
-### 3 — Launch it
-
-<sub>Open from Launchpad or Spotlight (<kbd>⌘</kbd> <kbd>Space</kbd> → "MacSense").</sub>
-
-<br />
-
-**Signed with a Developer ID certificate and notarized by Apple.**<br />
-<sub>Gatekeeper opens it on first launch — no warning, no right-click → Open.</sub>
+<sub>macOS 13+ · universal (Intel + Apple Silicon) · ~80 MB · signed and notarized — opens with no Gatekeeper warning</sub>
 
 </div>
 
-<br />
-
-<details>
-<summary><b>Verify the download (optional)</b></summary>
-
-```bash
-shasum -a 256 MacSense.dmg
-# compare against the SHA-256 listed on the Releases page
-```
-
-</details>
-
-No services to install. No permissions granted up front — MacSense asks for Full Disk Access only when you scan a path that needs it.
-
-<br />
-
 ---
-
-<br />
 
 ## ✨ Why MacSense
 
