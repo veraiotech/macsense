@@ -113,7 +113,14 @@ DMG_FLAGS=(
 # avoids the resize artifacts you get with a fixed background.
 [ -f "$ROOT/Resources/dmg-volume.icns" ] && DMG_FLAGS+=(--volicon "$ROOT/Resources/dmg-volume.icns")
 
-create-dmg "${DMG_FLAGS[@]}" "$DMG" "$APP"
+# The Finder-prettifying AppleScript times out (-1712) when the shell has no
+# Automation permission for Finder. Layout is cosmetic; the /Applications
+# symlink is a real symlink, so retry without it rather than fail the release.
+if ! create-dmg "${DMG_FLAGS[@]}" "$DMG" "$APP"; then
+    echo "→ Finder layout step failed, retrying without it"
+    rm -f "$DIST"/rw.*.dmg "$DMG"
+    create-dmg "${DMG_FLAGS[@]}" --skip-jenkins "$DMG" "$APP"
+fi
 
 if [ -n "$DEV_ID" ]; then
     echo "→ Signing DMG"
